@@ -1,0 +1,14 @@
+import express from "express";
+import cors from "cors";
+import helmet from "helmet";
+import auth from "./routes/auth";
+import products from "./routes/products";
+import categories from "./routes/categories";
+import cart from "./routes/cart";
+import orders from "./routes/orders";
+import {errorHandler,notFound} from "./middleware/error";
+export const app=express();
+app.use(helmet());app.use(cors());app.use(express.json({limit:"1mb"}));
+app.get("/health",(_req,res)=>res.json({status:"ok",service:"market-api"}));
+app.use("/api/auth",auth);app.use("/api/products",products);app.use("/api/categories",categories);app.use("/api/cart",cart);app.use("/api/orders",orders);
+app.use(notFound);app.use(errorHandler);
