@@ -1,0 +1,2 @@
+import {describe,expect,it} from "vitest";import {hashPassword,verifyPassword} from "../src/utils/password";
+describe("password hashing",()=>{it("hashes and verifies",async()=>{const h=await hashPassword("correct-password");expect(h).not.toBe("correct-password");expect(await verifyPassword("correct-password",h)).toBe(true);expect(await verifyPassword("wrong-password",h)).toBe(false);});});
