@@ -1,0 +1,3 @@
+import request from "supertest";import {describe,expect,it} from "vitest";import {app} from "../src/app";
+describe("health",()=>{it("returns service health",async()=>{const r=await request(app).get("/health");expect(r.status).toBe(200);expect(r.body).toEqual({status:"ok",service:"market-api"});});});
+describe("404",()=>{it("returns JSON",async()=>{const r=await request(app).get("/missing");expect(r.status).toBe(404);expect(r.body.message).toBe("Route not found");});});
